@@ -11,16 +11,16 @@ def load_data():
     # Original data from your image, restructured for clarity
     data = {
         'For a specific job opportunity': {
-            'Working': 85, 'Studying': 0, 'Applying': 5, 'Stay-at-home': 2, 'Other': 3, 'Left': 4
+            'Working': 85, 'Studying': 2, 'Applying': 5, 'Stay-at-home': 0, 'Other': 3, 'Left': 4
         },
         'To live with my partner who was living here': {
             'Working': 59, 'Studying': 5, 'Applying': 20, 'Stay-at-home': 5, 'Other': 6, 'Left': 4
         },
         'To study/do research': {
-            'Working': 55, 'Studying': 18, 'Applying': 13, 'Stay-at-home': 3, 'Other': 3, 'Left': 9
+            'Working': 55, 'Studying': 18, 'Applying': 13, 'Stay-at-home': 1, 'Other': 3, 'Left': 9
         },
         'To seek employment': {
-            'Working': 53, 'Studying': 0, 'Applying': 23, 'Stay-at-home': 2, 'Other': 3, 'Left': 10
+            'Working': 53, 'Studying': 10, 'Applying': 23, 'Stay-at-home': 2, 'Other': 3, 'Left': 10
         },
         'My spouse/partner was offered a job': {
             'Working': 48, 'Studying': 4, 'Applying': 22, 'Stay-at-home': 14, 'Other': 6, 'Left': 5
