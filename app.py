@@ -5,28 +5,56 @@ import plotly.express as px
 from plotly.subplots import make_subplots
 import numpy as np
 
-# Enhanced data structure - more readable and comprehensive
+
 @st.cache_data
 def load_data():
     # Original data from your image, restructured for clarity
     data = {
         'For a specific job opportunity': {
-            'Working': 85, 'Studying': 0, 'Applying': 5, 'Stay-at-home': 2, 'Other': 3, 'Left': 4
+            'Working': 85,
+            'Studying': 0,  # Very small, not visible in chart
+            'Applying': 5,
+            'Stay-at-home': 2,
+            'Other': 3,
+            'Left': 4
         },
+        
         'To live with my partner who was living here': {
-            'Working': 59, 'Studying': 5, 'Applying': 20, 'Stay-at-home': 5, 'Other': 6, 'Left': 4
+            'Working': 59,
+            'Studying': 5,
+            'Applying': 20,
+            'Stay-at-home': 5,
+            'Other': 6,
+            'Left': 4
         },
+        
         'To study/do research': {
-            'Working': 55, 'Studying': 18, 'Applying': 13, 'Stay-at-home': 3, 'Other': 3, 'Left': 9
+            'Working': 55,
+            'Studying': 18,
+            'Applying': 13,
+            'Stay-at-home': 3,
+            'Other': 3,
+            'Left': 9
         },
+        
         'To seek employment': {
-            'Working': 53, 'Studying': 0, 'Applying': 23, 'Stay-at-home': 2, 'Other': 3, 'Left': 10
+            'Working': 53,
+            'Studying': 10,  # Small purple segment visible
+            'Applying': 23,
+            'Stay-at-home': 3,
+            'Other': 1,  # Very small
+            'Left': 10
         },
+        
         'My spouse/partner was offered a job': {
-            'Working': 48, 'Studying': 4, 'Applying': 22, 'Stay-at-home': 14, 'Other': 6, 'Left': 5
+            'Working': 48,
+            'Studying': 4,
+            'Applying': 22,
+            'Stay-at-home': 14,
+            'Other': 6,
+            'Left': 5
         }
-    }
-    
+    }    
     # Convert to DataFrame for easier manipulation
     rows = []
     for original_reason, statuses in data.items():
@@ -161,7 +189,7 @@ def create_sankey_diagram(data_dict, selected_node=None):
 
 def create_stacked_bar_chart(df):
     pivot_df = df.pivot(index='Original Reason', columns='Current Status', values='Percentage').fillna(0)
-    pivot_df = pivot_df.sort_values('Working', ascending=False)
+    pivot_df = pivot_df.sort_values('Working', ascending=True)
 
     # Create shortened labels for clarity
     short_labels = {
@@ -244,23 +272,27 @@ def main():
         with col2:
             st.subheader("Key Insights")
             
-            # Calculate some quick stats
+            # Calculate some quick stats from the breakdown by reason
             working_rates = {reason: data_dict[reason]['Working'] for reason in data_dict.keys()}
             best_reason = max(working_rates, key=working_rates.get)
             worst_reason = min(working_rates, key=working_rates.get)
             
+            # Show best and worst performing reasons
             st.metric("Best Integration Rate", f"{working_rates[best_reason]}%", 
                      delta=f"{best_reason}")
             st.metric("Challenging Integration", f"{working_rates[worst_reason]}%", 
                      delta=f"{worst_reason}")
             
-            # Average outcomes
-            avg_working = np.mean([data_dict[r]['Working'] for r in data_dict.keys()])
-            avg_left = np.mean([data_dict[r]['Left'] for r in data_dict.keys()])
+            # Use the actual overall statistics (n=2028)
+            st.metric("Overall Working Rate", "68%", 
+                     help="Of all 2,028 respondents currently in Denmark")
+            st.metric("Overall Applying Rate", "14%", 
+                     help="Currently seeking employment or study")
+            st.metric("Overall Studying Rate", "7%", 
+                     help="Currently in education/research")
             
-            st.metric("Average Working Rate", f"{avg_working:.1f}%")
-            st.metric("Average Departure Rate", f"{avg_left:.1f}%")
-    
+            # Sample size info
+            st.info("📊 **Sample**: 2,028 expats currently living in Denmark")    
     elif view_mode == "🌊 Flow Analysis":
         st.subheader("Journey Flow: From Intention to Reality")
         
