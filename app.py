@@ -8,13 +8,13 @@ import numpy as np
 # Complete data structure with absolute numbers
 @st.cache_data
 def load_data():
-    # Estimated cohort sizes (calculated from the data)
+    # Corrected cohort sizes (calculated from the survey data percentages)
     cohort_sizes = {
-        'For a specific job opportunity': 480,
-        'To live with my partner who was living here': 520,
-        'To study/do research': 290,
-        'To seek employment': 220,
-        'My spouse/partner was offered a job': 380
+        'For a specific job opportunity': 475,
+        'To live with my partner who was living here': 518,
+        'To study/do research': 281,
+        'To seek employment': 216,
+        'My spouse/partner was offered a job': 367
     }
     
     # Percentage breakdowns within each cohort (from the original data)
@@ -369,7 +369,7 @@ def main():
             # Overall statistics
             st.markdown("---")
             st.markdown("**Overall Sample (n=2,028)**")
-            st.markdown("• Working: 68% (1,379 people)")
+            st.markdown("• Working: 68% (1,380 people)")
             st.markdown("• Applying: 14% (284 people)")
             st.markdown("• Studying: 7% (142 people)")
             st.markdown("• Stay-at-home: 4% (81 people)")
@@ -501,11 +501,11 @@ def main():
             st.markdown("""
             **Size vs Success**: Larger cohorts don't necessarily have better outcomes.
             
-            **Job Opportunity** (480 people): Highest success rate at 85% working.
+            **Job Opportunity** (475 people): Highest success rate at 85% working.
             
-            **Partner Join** (520 people): Largest cohort, moderate success at 59% working.
+            **Partner Join** (518 people): Largest cohort, moderate success at 59% working.
             
-            **Spouse Job** (380 people): Lowest working rate at 48%, highest stay-at-home rate.
+            **Spouse Job** (367 people): Lowest working rate at 48%, highest stay-at-home rate.
             """)
     
     # Footer insights
