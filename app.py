@@ -550,5 +550,31 @@ def main():
         • Strong pipeline effect
         """)
 
+# === WATERMARK/FOOTER ===
+    st.markdown("---")
+    st.markdown(
+        """
+        <div style='
+            text-align: center; 
+            padding: 20px; 
+            margin-top: 30px;
+            background: linear-gradient(135deg, #2E8B57 0%, #4169E1 100%);
+            border-radius: 10px;
+            color: white;
+        '>
+            <p style='margin: 0; font-size: 14px;'>
+                📊 Brought to you by <strong>Fair & Fornuftig</strong>
+            </p>
+            <p style='margin: 8px 0 0 0; font-size: 12px; opacity: 0.9;'>
+                Data source: Copenhagen Capacity Expat Survey 2025 (Pages 35-36)
+            </p>
+        </div>
+        """, 
+        unsafe_allow_html=True
+    )
+
+if __name__ == "__main__":
+    main()
+
 if __name__ == "__main__":
     main()
